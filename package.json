@@ -1,0 +1,18 @@
+{
+  "name": "webpackplugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "路径别名插件",
+  "main": "index.js",
+  "workspaces":[
+    "packages/main-app",
+    "packages/sdk"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2"
+}
