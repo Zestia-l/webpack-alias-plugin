@@ -4,7 +4,7 @@
   "private": true,
   "description": "路径别名插件",
   "main": "index.js",
-  "workspaces":[
+  "workspaces": [
     "packages/main-app",
     "packages/sdk"
   ],
@@ -14,5 +14,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.5.2"
+  "packageManager": "pnpm@10.5.2",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
 }
