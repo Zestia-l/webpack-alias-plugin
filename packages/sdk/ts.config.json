@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "NodeNext", 
+      "baseUrl": "./",              
+      "paths": {                   
+        "@/*": ["src/*"]
+      },
+      "resolveJsonModule": true  
+    },
+    "extends": "../../tsconfig.base.json"
+  }
