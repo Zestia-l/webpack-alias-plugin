@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
-      "moduleResolution": "NodeNext", 
       "baseUrl": "./",              
       "paths": {                   
         "@/*": ["src/*"],
         "sdk": ["../sdk/src/index.ts"]
       },
-      "resolveJsonModule": true  
+      "resolveJsonModule": true,
+      "jsx": "preserve",       
+      "lib": ["dom", "esnext"], 
+      "moduleResolution": "node" ,
     },
     "extends": "../../tsconfig.base.json"
   }
