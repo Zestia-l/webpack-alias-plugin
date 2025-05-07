@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "lib": ["ES6", "DOM"],
+      "outDir": "./dist",
+      "rootDir": "./packages",
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "strict": true,
+      "sourceMap": true,
+      "types":["node"],
+    },
+    "exclude": ["node_modules"]
+  }

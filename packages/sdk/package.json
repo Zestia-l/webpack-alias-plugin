@@ -1,0 +1,26 @@
+{
+  "name": "sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/core/index.ts",
+  "types": "src/core/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2",
+  "exports": {
+    ".": "./src/core/index.ts",
+    "./components": "./src/core/components/index.ts",
+    "./utils": "./src/core/utils/index.ts"
+  },
+  "dependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

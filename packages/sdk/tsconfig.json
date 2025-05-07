@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",              
+      "paths": {                   
+        "@/*": ["src/*"]
+      },
+      "resolveJsonModule": true,
+      "jsx": "react-jsx",
+      "jsxImportSource": "react",       
+      "lib": ["dom", "esnext"], 
+      "moduleResolution": "node" ,
+      "esModuleInterop": true,
+    },
+    "extends": "../../tsconfig.base.json"
+  }

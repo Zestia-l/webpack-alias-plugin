@@ -1,0 +1,23 @@
+{
+  "name": "main-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2",
+  "dependencies": {
+    "pnpm": "^10.10.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sdk": "workspace:*",
+    "webpack": "^5.99.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.14"
+  }
+}

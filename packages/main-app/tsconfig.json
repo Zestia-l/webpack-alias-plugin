@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",              
+      "paths": {                   
+        "@/*": ["src/*"],
+        "sdk": ["../sdk/src/core/*"]
+      },
+      "resolveJsonModule": true,
+      "jsx": "preserve",       
+      "lib": ["dom", "esnext"], 
+      "moduleResolution": "node" ,
+    },
+    "extends": "../../tsconfig.base.json"
+  }
