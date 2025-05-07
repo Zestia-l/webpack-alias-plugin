@@ -9,7 +9,7 @@ class WebpackAliasPlugin {
       this.packagePatterns = options.packages || ['packages/*'];
       this.tsConfigName = options.tsConfigName || 'tsconfig.json';
     }
-    apply(compiler) {
+    apply(compiler:any) {
       // 核心逻辑
     }
   }

@@ -3,3 +3,6 @@ export interface WebpackAliasPluginOptions {
     packages?: string[];
     tsConfigName?: string;
 }
+export interface Ref{
+    path:string;
+}
