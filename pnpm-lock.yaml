@@ -64,6 +64,9 @@ importers:
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
+      webpack:
+        specifier: ^5.99.6
+        version: 5.99.6
     devDependencies:
       '@types/node':
         specifier: ^22.15.14
