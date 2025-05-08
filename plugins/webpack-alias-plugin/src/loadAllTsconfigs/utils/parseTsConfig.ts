@@ -33,6 +33,6 @@ export function parseTsConfig(configPath:string) {//接收tsconfig文件所在�
         paths: AllConfig.compilerOptions?.paths || {}
       };
     } catch (error) {
-      // 错误处理逻辑...
+      console.error(`Error parsing tsconfig at ${configPath}:`, error);
     }
   }
