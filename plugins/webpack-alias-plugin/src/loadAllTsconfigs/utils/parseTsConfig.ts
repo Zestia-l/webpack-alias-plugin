@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {Ref} from '../types/index'
+import {Ref} from '../types';
 // 解析tsconfig文件，并解析其中的paths配置项。
 // 如果存在引用关系（references），则递归地解析所有引用的tsconfig文件中的paths配置项，并将其合并到原始的tsconfig文件中。
 // 最后返回一个包含baseUrl和paths的对象。
