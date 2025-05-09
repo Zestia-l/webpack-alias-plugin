@@ -1,4 +1,5 @@
 const path = require('path');
+const WebpackAiliasPlugin = require('../../plugins/webpack-alias-plugin/src');
 
 module.exports = {
   // 入口配置
@@ -52,5 +53,8 @@ module.exports = {
 
   // 插件配置（可选）
   plugins: [
+    new WebpackAiliasPlugin({
+      
+    })
   ]
 };

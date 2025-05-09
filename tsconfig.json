@@ -11,5 +11,10 @@
       "sourceMap": true,
       "types":["node"],
     },
+    "references": [
+      { "path": "./packages/main-app" },
+      { "path": "./packages/sdk"},
+      { "path": "./plugins/webpack-alias-plugin"}
+    ],
     "exclude": ["node_modules"]
   }
