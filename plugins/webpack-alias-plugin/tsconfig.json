@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
         "target": "ES6",
-        "module": "commonjs",
+        "module": "CommonJS",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "types": ["node"],
-        "composite": true
+        "composite": true,
+        "outDir": "dist"
     },
     "include": ["src/**/*","types/**/*"]
 }

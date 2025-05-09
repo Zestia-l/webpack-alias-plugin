@@ -1,4 +1,4 @@
-import { globSync } from "fs";
+import { globSync } from "glob";
 import path from "path";
 import * as fs from 'fs';
 import { parseTsConfig } from "./utils/parseTsConfig";

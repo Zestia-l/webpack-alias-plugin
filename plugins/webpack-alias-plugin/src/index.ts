@@ -2,7 +2,7 @@ import { Compiler } from 'webpack';
 import { WebpackAliasPluginOptions } from '../types/index';
 import { loadAllTsConfigs } from './loadAllTsconfigs';
 import { mergeAliases } from './MergeAliases';
-export class WebpackAliasPlugin {
+class WebpackAliasPlugin {
     rootPath: string;
     packagePatterns: string[];
     tsConfigName: string;
@@ -13,10 +13,11 @@ export class WebpackAliasPlugin {
       this.tsConfigName = options.tsConfigName || 'tsconfig.json';
     }
     apply(compiler:Compiler) {
-      compiler.hooks.environment.tap('MonorepoAliasPlugin', () => {
+      compiler.hooks.afterResolvers.tap('MonorepoAliasPlugin', () => {
         const aliases = loadAllTsConfigs(this.packagePatterns,this.rootPath, this.tsConfigName);
         mergeAliases(compiler, aliases);
         console.log('WebpackAliasPlugin合并的paths配置: ', aliases);
       });
     }
   }
+  module.exports = WebpackAliasPlugin;

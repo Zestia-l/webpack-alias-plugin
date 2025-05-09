@@ -1,3 +1,4 @@
 packages:
   - "packages/main-app"
   - "packages/sdk"
+  - "plugins/*"

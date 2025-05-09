@@ -15,9 +15,17 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sdk": "workspace:*",
-    "webpack": "^5.99.6"
+    "webpack-alias-plugin": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^22.15.14"
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@types/node": "^22.15.14",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "webpack": "^5.99.6",
+    "webpack-cli": "^4.10.0"
   }
 }

@@ -2,16 +2,19 @@
   "name": "webpack-alias-plugin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.5.2",
   "devDependencies": {
-    "@types/node": "^22.15.14"
+    "@types/glob": "^8.1.0",
+    "@types/node": "^22.15.14",
+    "glob": "^11.0.2"
   },
   "dependencies": {
     "typescript": "^5.8.2",

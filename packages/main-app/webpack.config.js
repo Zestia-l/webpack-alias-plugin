@@ -1,17 +1,23 @@
 const path = require('path');
-const WebpackAiliasPlugin = require('../../plugins/webpack-alias-plugin/src');
+const WebpackAiliasPlugin = require('webpack-alias-plugin');
 
 module.exports = {
   // 入口配置
-  entry: './src/index.js',
+  entry: './src/index.tsx',
 
   // 输出配置
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
+    environment:{
+      arrowFunction:true,
+    }
   },
 
+  experiments:{
+    outputModule:true,
+  },
   // 模块处理规则
   module: {
     rules: [
@@ -31,6 +37,23 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource'
       }
+      // TypeScript 处理
+      ,{
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true, // 跳过类型检查加速构建[6](@ref)
+              compilerOptions: {
+                jsx: 'react' // 强制启用JSX转换[5](@ref)
+              }
+            }
+          }
+        ],
+      }
+
     ]
   },
 
@@ -51,10 +74,17 @@ module.exports = {
     port: 3000
   },
 
+  mode: 'development',
   // 插件配置（可选）
   plugins: [
-    new WebpackAiliasPlugin({
-      
-    })
+    new WebpackAiliasPlugin(
+      {
+        root: path.resolve(__dirname, '../../'), // 指向monorepo根目录
+      packages: [
+        'packages/*',    // 核心包目录
+        'plugins/*'      // 插件目录
+      ]
+      }
+    ),
   ]
 };
