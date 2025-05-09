@@ -9,6 +9,7 @@
       "jsx": "preserve",       
       "lib": ["dom", "esnext"], 
       "moduleResolution": "node" ,
+      "composite": true
     },
-    "extends": "../../tsconfig.base.json"
+    "extends": "../../tsconfig.json"
   }

@@ -16,6 +16,7 @@ export class WebpackAliasPlugin {
       compiler.hooks.environment.tap('MonorepoAliasPlugin', () => {
         const aliases = loadAllTsConfigs(this.packagePatterns,this.rootPath, this.tsConfigName);
         mergeAliases(compiler, aliases);
+        console.log('WebpackAliasPlugin合并的paths配置: ', aliases);
       });
     }
   }
