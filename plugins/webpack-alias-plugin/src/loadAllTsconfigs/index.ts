@@ -18,7 +18,7 @@ export function loadAllTsConfigs(packagePatterns:string[], rootPath:string, tsCo
             const { baseUrl, paths } = AliasesAndPaths;
             Object.entries(paths).forEach(([alias, mappings]) => {
             const normalizedPath = normalizeAliasPath(
-              pkgDir, baseUrl, (Array.isArray(mappings) ? mappings[0] : '')
+              rootPath, baseUrl, (Array.isArray(mappings) ? mappings[0] : ''),pkgDir
             );
             aliases[alias.replace('/*', '')] = normalizedPath;
           });

@@ -10,24 +10,24 @@ export function parseTsConfig(configPath:string) {//接收tsconfig文件所在�
       //读取并将tsconfig文件转化为对象
       const AllConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       //获取tsconfig中的references配置项
-      const { TsConfigPaths = [] } = AllConfig;
-      //遍历所有references中的路径，找到所有tsconfig文件
-      //ref是一个对象，包含path属性，path属性是一个字符串，代表tsconfig文件的相对路径
-      TsConfigPaths.forEach((ref:Ref)=> {
-        //拼接绝对路径
-        //path.dirname(configPath)获取当前tsconfig文件所在目录的绝对路径（上一层）
-        const refPath = path.join(path.dirname(configPath), ref.path);
-        //fs.existsSync(refPath)判断文件是否存在
-        if (fs.existsSync(refPath)) {
-          //递归
-          const refConfig = parseTsConfig(refPath);
-          //将refConfig中的paths配置项合并到原始的tsconfig文件中
-          if(refConfig && refConfig.paths)
-          {
-            Object.assign(AllConfig.compilerOptions.paths, refConfig.paths);
-          }
-        }
-      });
+      // const { references = [] } = AllConfig;
+      // //遍历所有references中的路径，找到所有tsconfig文件
+      // //ref是一个对象，包含path属性，path属性是一个字符串，代表tsconfig文件的相对路径
+      // references.forEach((ref:Ref)=> {
+      //   //拼接绝对路径
+      //   //path.dirname(configPath)获取当前tsconfig文件所在目录的绝对路径（上一层）
+      //   const refPath = path.join(path.dirname(configPath), ref.path);
+      //   //fs.existsSync(refPath)判断文件是否存在
+      //   if (fs.existsSync(refPath)) {
+      //     //递归
+      //     const refConfig = parseTsConfig(refPath);
+      //     //将refConfig中的paths配置项合并到原始的tsconfig文件中
+      //     if(refConfig && refConfig.paths)
+      //     {
+      //       Object.assign(AllConfig.compilerOptions.paths, refConfig.paths);
+      //     }
+      //   }
+      // });
       return {
         baseUrl: AllConfig.compilerOptions?.baseUrl || '.',
         paths: AllConfig.compilerOptions?.paths || {}

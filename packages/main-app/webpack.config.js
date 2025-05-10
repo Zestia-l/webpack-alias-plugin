@@ -80,7 +80,7 @@ module.exports = {
     new WebpackAiliasPlugin(
       {
         root: path.resolve(__dirname, '../../'), // 指向monorepo根目录
-      packages: [
+        packages: [
         'packages/*',    // 核心包目录
         'plugins/*'      // 插件目录
       ]
