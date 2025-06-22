@@ -30,7 +30,7 @@ jobs:
 
       - name: Check for dependency issues
         run: |
-          pnpm add -D depcheck -v
+          pnpm add -D depcheck -w
           npx depcheck --pnpm
           pnpm install --check-lockfile --strict-peer-dependencies
           pnpm store status
@@ -42,13 +42,13 @@ jobs:
       - name: Dependency security scan
         run: |
           pnpm audit
-          pnpm add -D snyk -v
+          pnpm add -D snyk -w
           npx snyk test --strict-out-of-sync=false --strict-semver=false
         continue-on-error: true
 
       - name: Generate dependency reports
         run: |
-          pnpm add -D dependency-cruiser webpack-bundle-analyzer -v
+          pnpm add -D dependency-cruiser webpack-bundle-analyzer -w
           npx dependency-cruiser src --output-type dot | dot -Tsvg > dependencies.svg
           if [ -f "webpack.config.js" ]; then
             npx webpack --json > dist/stats.json
