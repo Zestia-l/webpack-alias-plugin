@@ -1,5 +1,5 @@
 name: Dependency Analysis
-on: [push, pull_request]  # 在 push 和 PR 时触发
+on: [push, pull_request]
 
 jobs:
   analyze:
@@ -11,58 +11,52 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # 根据项目需求调整 Node 版本
-          cache: 'pnpm'       # 使用 pnpm 缓存加速安装
+          node-version: '18'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Check environment compatibility
+        run: |
+          node -v
+          pnpm -v
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile  # 严格按照 lock 文件安装
+        run: pnpm install --frozen-lockfile
 
-      # 1. 检测未使用的依赖
-      - name: Check unused dependencies
+      - name: Check for dependency issues
         run: |
-          pnpm add depcheck
+          pnpm add -D depcheck
           npx depcheck --pnpm
-        continue-on-error: false  # 报错则终止流程
-
-      # 2. 检测依赖冲突
-      - name: Check dependency conflicts
-        run: |
-          pnpm why --all  # 显示所有依赖路径，人工检查冲突
-          pnpm list --depth=0 --long  # 检查顶层依赖
-        continue-on-error: false
-
-      # 3. 分析重复依赖
-      - name: Analyze duplicate dependencies
-        run: |
-          pnpm store status  # 检查存储中的冗余包
-          pnpm tree --duplicates  # 查找重复依赖
-        continue-on-error: false
-
-      # 4. 验证 lock 文件一致性
-      - name: Verify lock file integrity
-        run: |
+          pnpm install --check-lockfile --strict-peer-dependencies
+          pnpm store status
+          pnpm tree --duplicates
           pnpm check --verify-store-integrity
-          pnpm install --dry-run --frozen-lockfile  # 验证 lock 文件是否最新
+          pnpm install --dry-run --frozen-lockfile
         continue-on-error: false
 
-      # 5. 分析依赖结构（可选，视项目规模而定）
-      - name: Analyze dependency structure
+      - name: Dependency security scan
         run: |
-          pnpm add ependency-cruiser
-          npx dependency-cruiser src --validate pattern:.dependency-cruiser.js
+          pnpm audit
+          pnpm add -D snyk
+          npx snyk test --strict-out-of-sync=false --strict-semver=false
         continue-on-error: true
-        if: always()  # 始终运行，但不强制要求通过
 
-      # 6. 可视化依赖（可选，生成报告但不阻止流程）
-      - name: Visualize dependencies
+      - name: Generate dependency reports
         run: |
-          pnpm add webpack-bundle-analyzer
+          pnpm add -D dependency-cruiser webpack-bundle-analyzer
           npx dependency-cruiser src --output-type dot | dot -Tsvg > dependencies.svg
-          npx webpack-bundle-analyzer dist/stats.json --mode static --reportFilename bundle-analysis.html
+          if [ -f "webpack.config.js" ]; then
+            npx webpack --json > dist/stats.json
+            npx webpack-bundle-analyzer dist/stats.json --mode static --reportFilename bundle-analysis.html
+          fi
         continue-on-error: true
         if: always()
 
-      # 8. 上传可视化报告（如果生成了）
       - name: Upload dependency reports
         uses: actions/upload-artifact@v4
         with:
